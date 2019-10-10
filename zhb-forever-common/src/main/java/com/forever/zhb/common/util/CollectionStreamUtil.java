@@ -5,7 +5,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
+
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -30,6 +36,10 @@ public class CollectionStreamUtil {
         //最大，value最大的
         Optional<KeyValueVO<String, Integer>> max = listKeyValueVOs.stream().collect(Collectors.maxBy(Comparator.comparing(KeyValueVO::getValue)));
         max.ifPresent(System.out::println);
+        
+        //去重，去掉值一样的
+        List<KeyValueVO<String, Integer>> compare = listKeyValueVOs.stream().collect(collectingAndThen(
+                toCollection(() -> new TreeSet<>(comparingInt(KeyValueVO::getValue))), ArrayList::new));
         
         //list 转为 map
         //Map<String, Integer> maps = listKeyValueVOs.stream().collect(Collectors.toMap(KeyValueVO::getKey, KeyValueVO::getValue,(key1,key2)->key1));
@@ -90,6 +100,5 @@ public class CollectionStreamUtil {
     public static void print(String value) {
         System.out.println(value);
     }
-    
 
 }
