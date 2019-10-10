@@ -10,6 +10,7 @@
 		<module>zhb-forever-common</module>
         <module>zhb-forever-ms</module>
         <module>zhb-forever-eureka</module>
+        <module>zhb-forever-server</module>
     </modules>
     <packaging>pom</packaging>
  
