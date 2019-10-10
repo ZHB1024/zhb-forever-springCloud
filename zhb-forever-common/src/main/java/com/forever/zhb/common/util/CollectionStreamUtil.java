@@ -1,8 +1,10 @@
 package com.forever.zhb.common.util;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -17,14 +19,25 @@ public class CollectionStreamUtil {
     
     public static void main(String[] args) {
         List<KeyValueVO<String, Integer>> listKeyValueVOs = CollectionUtil.getListKeyValueVO();
+        
         List<Pair> pairs = listKeyValueVOs.stream().map(vo -> {
             return Pair.of(vo.getKey(), vo.getValue());
         }).collect(Collectors.toList());
         
+        //过滤，key为1
+        List<KeyValueVO<String, Integer>> resultKeyValueVOs = listKeyValueVOs.stream().filter(vo->vo.getKey().equals("1")).collect(Collectors.toList());
+        
+        //最大，value最大的
+        Optional<KeyValueVO<String, Integer>> max = listKeyValueVOs.stream().collect(Collectors.maxBy(Comparator.comparing(KeyValueVO::getValue)));
+        max.ifPresent(System.out::println);
+        
+        //list 转为 map
         //Map<String, Integer> maps = listKeyValueVOs.stream().collect(Collectors.toMap(KeyValueVO::getKey, KeyValueVO::getValue,(key1,key2)->key1));
         
+        //list 转为 map
         //Map<String, KeyValueVO> maps = listKeyValueVOs.stream().collect(Collectors.toMap(KeyValueVO::getKey, vo->vo,(key1,key2)->key1));
         
+        //分组，按照key分组
         Map<String, List<KeyValueVO<String, Integer>>> maps = listKeyValueVOs.stream().collect(Collectors.groupingBy(KeyValueVO::getKey));
         
         

@@ -32,5 +32,9 @@ public class KeyValueVO<T,V> {
     public void setValue(V value) {
         this.value = value;
     }
+    
+    public String toString() {
+        return "key:" + this.key + ",value:" + this.value;
+    }
 
 }
