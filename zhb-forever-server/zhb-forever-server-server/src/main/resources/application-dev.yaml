@@ -1,11 +1,10 @@
-eureka:
-  client:
-    fetch-registry:false
-    register-with-eureka:false
-    serviceUrl:
-      defaultZone:http://localhost:8761/eureka
-logging:
-  level:
-    ROOT:info
-    com.forever:debug
+eureka: 
+  client: 
+    enbaled: true
+logging: 
+  level: 
+    ROOT: info
+
+    
+    
   
