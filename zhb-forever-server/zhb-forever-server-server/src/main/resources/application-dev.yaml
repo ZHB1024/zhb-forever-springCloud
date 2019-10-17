@@ -4,6 +4,11 @@ eureka:
 logging: 
   level: 
     ROOT: info
+zhb: 
+  forever:
+    msg: 
+      url: http://localhost:8012 
+
 
     
     

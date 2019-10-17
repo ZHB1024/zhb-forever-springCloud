@@ -13,8 +13,7 @@ public class MsController {
     
     @GetMapping("/sendmail")
     public String sendMail(String content) {
-        
-        return "success";
+        return "sendMail:success,content:" + content;
     }
     
     
